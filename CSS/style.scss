@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BK Doces - Deliciosos Bombons Artesanais</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #fff5f7;
+        }
+        
+        header {
+            background-color: #ffb6c1;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo h1 {
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            font-size: 2.5em;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: #ff8fa3;
+        }
+        
+        .search-bar {
+            display: flex;
+        }
+        
+        .search-bar input {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #ff8fa3;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        main {
+            padding: 20px;
+            min-height: 70vh;
+        }
+        
+        footer {
+            background-color: #ffb6c1;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        .contact-info {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        
+        .contact-info h2 {
+            color: #ff8fa3;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>BK Doces</h1>
+        </div>
+        <nav>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="quem-somos.html">Quem Somos</a>
+                <a href="produtos.html">Produtos</a>
+                <a href="contato.html">Contato</a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Pesquisar...">
+                <button>Buscar</button>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Conteúdo dinâmico será carregado aqui -->
+        <div id="content">
+            <h2>Bem-vindo à BK Doces!</h2>
+            <p>Os melhores bombons artesanais da região!</p>
+            <!-- Conteúdo da página atual será injetado aqui pelo JavaScript -->
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 BK Doces - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Função para carregar o conteúdo dinâmico
+        function loadContent(page) {
+            const contentDiv = document.getElementById('content');
+            
+            if (page === 'index.html' || page === '/') {
+                contentDiv.innerHTML = `
+                    <h2>Bem-vindo à BK Doces!</h2>
+                    <p>Os melhores bombons artesanais da região!</p>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <img src="https://via.placeholder.com/600x300?text=Bombons+Deliciosos" alt="Bombons" style="max-width: 100%; border-radius: 10px;">
+                    </div>
+                `;
+            } else if (page === 'quem-somos.html') {
+                contentDiv.innerHTML = `
+                    <h2>Quem Somos</h2>
+                    <p></p>
+                `;
+            } else if (page === 'produtos.html') {
+                contentDiv.innerHTML = `
+                    <h2>Nossos Produtos</h2>
+                    <p></p>
+                `;
+            } else if (page === 'contato.html') {
+                contentDiv.innerHTML = `
+                    <div class="contact-info">
+                        <h2>Entre em Contato</h2>
+                        <p><strong>Kailayne Soares Ribeiro</strong></p>
+                        <p>Tel: (44) 97400-2656</p>
+                        <p><strong>Bruno Brito de Carvalho</strong></p>
+                        <p>Tel: (44) 99726-9992</p>
+                        <p>Campo Mourão - PR</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Carrega o conteúdo inicial
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            loadContent(currentPage);
+            
+            // Configura os links de navegação
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('href');
+                    history.pushState({}, '', page);
+                    loadContent(page);
+                });
+            });
+        });
+        
+        // Manipula o botão de voltar/avançar do navegador
+        window.addEventListener('popstate', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            loadContent(currentPage);
+        });
+    </script>
+</body>
+</html>

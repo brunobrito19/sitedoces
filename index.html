@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BK Doces - Bombons e Trufas Artesanais Premium</title>
+    <style>
+        /* Estilos Gerais */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #FFF5F5;
+            font-family: 'Quicksand', sans-serif;
+            color: #5A2D2D;
+            overflow-x: hidden;
+        }
+        
+        /* Cabeçalho Doce */
+        header {
+            background: linear-gradient(135deg, #FF9BB3 0%, #FF6B8B 100%);
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(255, 107, 139, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+        }
+        
+        .logo {
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        .logo h1 {
+            font-family: 'Pacifico', cursive;
+            color: white;
+            font-size: 3.5rem;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .logo h1::before, .logo h1::after {
+            content: "🍫";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+        
+        .logo h1::before {
+            left: -50px;
+        }
+        
+        .logo h1::after {
+            right: -50px;
+        }
+        
+        /* Navegação Estilizada */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background-color: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Barra de Pesquisa Doce */
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar input {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+            width: 200px;
+            font-family: 'Quicksand', sans-serif;
+            background-color: rgba(255,255,255,0.8);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .search-bar button {
+            padding: 10px 20px;
+            border: none;
+            background: linear-gradient(135deg, #FFD166 0%, #FF9B54 100%);
+            color: white;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .search-bar button:hover {
+            background: linear-gradient(135deg, #FF9B54 0%, #FF7D54 100%);
+            transform: translateY(-2px);
+        }
+        
+        /* Conteúdo Principal */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+        
+        /* Seções Estilizadas */
+        .section {
+            display: none;
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #FF9BB3 0%, #FF6B8B 50%, #FFD166 100%);
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section h2 {
+            color: #FF6B8B;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            font-family: 'Pacifico', cursive;
+        }
+        
+        .section h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF6B8B 0%, #FFD166 100%);
+            border-radius: 3px;
+        }
+        
+        .section p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* Elementos Doces Decorativos */
+        .candy-decoration {
+            text-align: center;
+            font-size: 2rem;
+            margin: 30px 0;
+            letter-spacing: 15px;
+            color: #FF6B8B;
+        }
+        
+        /* Galeria de Produtos Premium */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 107, 139, 0.2);
+        }
+        
+        .product-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #FF9BB3 0%, #FF6B8B 100%);
+        }
+        
+        .product-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .product-info h3 {
+            color: #FF6B8B;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .product-info p {
+            color: #7A5A5A;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #FF9B54;
+            font-size: 1.5rem;
+            display: inline-block;
+            background-color: #FFF5F5;
+            padding: 5px 15px;
+            border-radius: 30px;
+        }
+        
+        /* Seção de Contato Estilizada */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, #FFF5F5 0%, white 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 300px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 107, 139, 0.2);
+            text-align: center;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.15);
+        }
+        
+        .contact-card h3 {
+            color: #FF6B8B;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-card h3::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #FF6B8B 0%, #FFD166 100%);
+        }
+        
+        .contact-card p {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        /* Rodapé Encantador */
+        footer {
+            background: linear-gradient(135deg, #FF9BB3 0%, #FF6B8B 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 80px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23FFF5F5" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23FFF5F5" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23FFF5F5"/></svg>');
+            background-size: cover;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        footer .candy-icon {
+            font-size: 1.5rem;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Efeitos Especiais */
+        .floating-candies {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .candy {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.2;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de doces flutuantes -->
+    <div class="floating-candies" id="floating-candies"></div>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>BK Doces</h1>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#quem-somos">Quem Somos</a>
+                    <a href="#produtos">Produtos</a>
+                    <a href="#contato">Contato</a>
+                    <a href="#localizacao">Localização</a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Pesquisar doces...">
+                    <button>Buscar</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <!-- Seção Home -->
+        <section id="home" class="section active">
+            <h2>Bem-vindo à BK Doces!</h2>
+            <div class="candy-decoration">🍫 🍬 🧁 🎂 🍩 🍭</div>
+            <p>Os melhores bombons e trufas artesanais da região, feitos com amor e ingredientes de alta qualidade para adoçar sua vida!</p>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                     alt="Bombons artesanais" 
+                     style="max-width: 100%; border-radius: 15px; box-shadow: 0 15px 30px rgba(255, 107, 139, 0.2); border: 5px solid white;">
+            </div>
+            
+            <p>Nossos doces são produzidos artesanalmente, com receitas exclusivas e muito carinho. Cada mordida é uma experiência única de sabores e texturas que vão te surpreender!</p>
+            
+            <div class="candy-decoration"> </div>
+        </section>
+        
+        <!-- Seção Quem Somos -->
+        <section id="quem-somos" class="section">
+            <h2>Nossa Doce História</h2>
+            <div class="candy-decoration">❤️ 🧡 💛 💚 💙 💜</div>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-bottom: 30px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Equipe BK Doces" 
+                         style="width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <p>A BK Doces nasceu em 2024 do amor por doces e da vontade de trazer sabores especiais para Campo Mourão. Tudo começou quando Kailayne e Bruno, apaixonados por chocolate, começaram a fazer trufas para presentear amigos e familiares.</p>
+                    
+                    <p>O feedback foi tão positivo que resolveram transformar o hobby em negócio. Começamos pequeno, produzindo em casa e vendendo para conhecidos. Com o tempo, a qualidade de nossos produtos falou por si e a demanda cresceu.</p>
+                 <p>Hoje, com muito orgulho, produzimos mais de 20 variedades de bombons e trufas, e incluimos em nossa produção bolos e bombons na taça, sempre mantendo a qualidade artesanal e o cuidado com cada detalhe que nos tornou conhecidos. Nosso segredo? Ingredientes selecionados, receitas exclusivas e muito carinho em cada produção!</p>
+            </div>
+        </section>
+        
+        <!-- Seção Produtos -->
+        <section id="produtos" class="section">
+            <h2>Nossas Delícias</h2>
+            <p>Conheça nossa linha premium de produtos artesanais, cada um feito com ingredientes selecionados e muito amor:</p>
+            
+            <div class="product-grid">
+                <!-- Produto 1 -->
+                <div class="product-card">
+                    <div class="product-image" 
+                         style="background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="product-info">
+                        <h3>Trufas e Brownie Tradicionais</h3>
+                        <p>Deliciosas trufas de chocolate ao leite, meio amargo e branco, com acabamento perfeito.</p>
+                        <div class="price">R$ 5,00/un</div>
+                    </div>
+                </div>
+                
+                <!-- Produto 2 -->
+                <div class="product-card">
+                    <div class="product-image" 
+                         style="background-image: url('https://images.unsplash.com/photo-1602351447937-745cb720612f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bolos Especiais</h3>
+                        <p>Bolos recheados com sabores exclusivos como maracujá, supresinha de morango e muito mais.</p>
+                        <div class="price">R$ 50,00/un</div>
+                    </div>
+                </div>
+                
+                <!-- Produto 3 -->
+                <div class="product-card">
+                    <div class="product-image" 
+                         style="background-image: url('https://images.unsplash.com/photo-1604066867775-43f48e3957d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="product-info">
+                        <h3>Kit Store special</h3>
+                        <p>Caixas personalizadas com seleção dos melhores bombons, trufas ou bolos perfeito para presentear.</p>
+                        <div class="price">R$ 45,00</div>
+                    </div>
+                </div>
+                
+                <!-- Produto 4 -->
+                <div class="product-card">
+                    <div class="product-image" 
+                         style="background-image: url('https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="product-info">
+                        <h3>Taça Premium</h3>
+                        <p>Edição especial com ingredientes selecionados e combinações sofisticadas.</p>
+                        <div class="price">R$ 10,00/un</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="candy-decoration"> </div>
+        </section>
+        
+        <!-- Seção Contato -->
+        <section id="contato" class="section">
+            <h2>Fale Conosco</h2>
+            <p>Estamos sempre prontos para atender você! Entre em contato por qualquer um dos canais abaixo:</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Kailayne</h3>
+                    <p><strong>Telefone:</strong> (44) 97400-2656</p>
+                    <p><strong>Email:</strong> kailayne@bkdoces.com</p>
+                    <p><strong>Horário:</strong> 9h às 18h</p>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Bruno</h3>
+                    <p><strong>Telefone:</strong> (44) 99726-9992</p>
+                    <p><strong>Email:</strong> bruno@bkdoces.com</p>
+                    <p><strong>Horário:</strong> 9h às 18h</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px; text-align: center;">
+                <p>Siga-nos nas redes sociais e fique por dentro das novidades!</p>
+                <div class="candy-decoration">📱 💻 🖥️ 📲</div>
+                <p style="font-size: 1.2rem; margin-top: 10px;">@bkdocesoficial</p>
+            </div>
+        </section>
+        
+        <!-- Seção Localização -->
+        <section id="localizacao" class="section">
+            <h2>Onde Estamos</h2>
+            <div class="candy-decoration"> </div>
+            
+            <p>Nosso encantador espaço está localizado no coração de Campo Mourão - PR, pronto para te receber com todo o carinho e os melhores doces da região!</p>
+            
+            <div style="margin: 30px 0; text-align: center;">
+               
+            </div>
+            
+            <div style="background-color: #FFF5F5; padding: 20px; border-radius: 15px; text-align: center; max-width: 600px; margin: 0 auto;">
+                <p><strong>Endereço:</strong> Av. Armelindo Trombini - Jardim Flora II, Campo Mourão - PR</p>
+                <p><strong>Horário de atendimento:</strong> Segunda a Sábado, das 9h às 18h</p>
+            </div>
+            
+            <div class="candy-decoration"> </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p><span class="candy-icon">🍫</span> © 2025 BK Doces - Doces Artesanais <span class="candy-icon">🍬</span></p>
+        <p>Campo Mourão - PR | Feito com amor e muito chocolate!</p>
+    </footer>
+
+    <script>
+        // Função para mostrar a seção clicada
+        function showSection(sectionId) {
+            // Esconde todas as seções
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostra a seção selecionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Rola suavemente para a seção
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Configura os links de navegação
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href').substring(1);
+                showSection(sectionId);
+                
+                // Atualiza a URL sem recarregar a página
+                history.pushState({}, '', `#${sectionId}`);
+            });
+        });
+        
+        // Mostra a seção inicial baseada no hash da URL
+        window.addEventListener('DOMContentLoaded', function() {
+            const initialSection = window.location.hash.substring(1) || 'home';
+            showSection(initialSection);
+            
+            // Cria doces flutuantes
+            createFloatingCandies();
+        });
+        
+        // Manipula o botão de voltar/avançar do navegador
+        window.addEventListener('popstate', function() {
+            const sectionId = window.location.hash.substring(1) || 'home';
+            showSection(sectionId);
+        });
+        
+        // Cria efeito de doces flutuantes
+        function createFloatingCandies() {
+            const candies = ['🍫', '🍬', '🧁', '🍩', '🍭', '🎂', '🍪', '🍮'];
+            const container = document.getElementById('floating-candies');
+            
+            for (let i = 0; i < 20; i++) {
+                const candy = document.createElement('div');
+                candy.className = 'candy';
+                candy.textContent = candies[Math.floor(Math.random() * candies.length)];
+                candy.style.left = `${Math.random() * 100}%`;
+                candy.style.top = `${Math.random() * 100}%`;
+                candy.style.animationDuration = `${15 + Math.random() * 20}s`;
+                candy.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(candy);
+            }
+        }
+    </script>
+</body>
+</html>
